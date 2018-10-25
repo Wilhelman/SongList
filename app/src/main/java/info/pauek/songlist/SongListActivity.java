@@ -50,8 +50,8 @@ public class SongListActivity extends AppCompatActivity {
         intent.putExtra("band", str_data);
         str_data = songs.get(position).getYear().toString();
         intent.putExtra("year", str_data);
-       /*int index_data = position;
-        data.putExtra("index", index_data);*/
+
+        intent.putExtra("index", position);
         setResult(RESULT_OK, intent);
 
         startActivityForResult(intent, EDIT_SONG);
@@ -128,8 +128,19 @@ public class SongListActivity extends AppCompatActivity {
                     String title = data.getStringExtra("title");
                     String band = data.getStringExtra("band");
                     String year = data.getStringExtra("year");
-                    songs.add(new Song(title,band,year));
-                    adapter.notifyItemInserted(songs.size()-1);
+                    int index = data.getIntExtra("index", -1);
+
+                    if(index == -1){
+                        songs.add(new Song(title,band,year));
+                        adapter.notifyItemInserted(songs.size()-1);
+                    }else{
+                        Song current_song = songs.get(index);
+                        current_song.setBand(band);
+                        current_song.setTitle(title);
+                        current_song.setYear(year);
+                        adapter.notifyItemChanged(index);
+                    }
+
                 }
                 break;
             default:

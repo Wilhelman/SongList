@@ -30,6 +30,7 @@ public class SongEditActivity extends AppCompatActivity {
         int cal_year = calendar.get(Calendar.YEAR);
         edit_year.setText(String.valueOf(cal_year));
 
+        index = -1;
 
         Intent intent = getIntent();
         if(intent != null){
@@ -37,7 +38,7 @@ public class SongEditActivity extends AppCompatActivity {
             String title = intent.getStringExtra("title");
             String band = intent.getStringExtra("band");
             String year = intent.getStringExtra("year");
-            //index = intent.getIntExtra("index",0);
+            index = intent.getIntExtra("index",-1);
 
             if(title != null){
                 edit_title.setText(intent.getStringExtra("title"));
@@ -71,6 +72,7 @@ public class SongEditActivity extends AppCompatActivity {
         data.putExtra("band", str_data);
         str_data = edit_year.getText().toString();
         data.putExtra("year", str_data);
+        data.putExtra("index", index);
         setResult(RESULT_OK, data);
         finish();
     }
