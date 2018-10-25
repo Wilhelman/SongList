@@ -1,13 +1,17 @@
 package info.pauek.songlist;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +35,24 @@ public class SongListActivity extends AppCompatActivity {
         song_list_view = findViewById(R.id.song_list_view);
         song_list_view.setLayoutManager(new LinearLayoutManager(this));
         song_list_view.setAdapter(adapter);
+    }
+
+    /*Menu stuff*/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.song_list_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.btn_new_song:
+                Toast.makeText(this, "Useless button! :D",
+                        Toast.LENGTH_LONG).show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
