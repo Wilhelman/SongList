@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SongList</string>
+    <string name="lbl_title">Title</string>
+    <string name="lbl_song_name">Song name</string>
+    <string name="lbl_band">Band</string>
+    <string name="lbl_band_hint" >Band name</string>
+    <string name="lbl_year">Year</string>
+    <string name="lbl_year_hint">Year</string>
+    <string name="btn_minus">-</string>
+    <string name="btn_plus">+</string>
+    <string name="btn_save">Save</string>
+</resources>
