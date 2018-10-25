@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class SongEditActivity extends AppCompatActivity {
 
     private TextView edit_title;
@@ -19,6 +22,11 @@ public class SongEditActivity extends AppCompatActivity {
         edit_title = findViewById(R.id.edit_title);
         edit_band = findViewById(R.id.edit_band);
         edit_year = findViewById(R.id.edit_year);
+
+        // Init the year to the current one
+        Calendar calendar = new GregorianCalendar();
+        int year = calendar.get(Calendar.YEAR);
+        edit_year.setText(String.valueOf(year));
     }
 
     public void onClickMinus(View view) {
