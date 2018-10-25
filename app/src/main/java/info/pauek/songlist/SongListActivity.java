@@ -30,7 +30,7 @@ public class SongListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_song_list);
 
         songs = new ArrayList<>();
-        songs.add(new Song("...And Justice For All"));
+        songs.add(new Song("...And Justice For All","BandTest","1997"));
 
         adapter = new Adapter();
 
@@ -59,10 +59,14 @@ public class SongListActivity extends AppCompatActivity {
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView title_view;
+        private TextView band_view;
+        private TextView year_view;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title_view = itemView.findViewById(R.id.title_view);
+            band_view = itemView.findViewById(R.id.band_view);
+            year_view = itemView.findViewById(R.id.year_view);
         }
     }
 
@@ -77,6 +81,8 @@ public class SongListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
             holder.title_view.setText(songs.get(i).getTitle());
+            holder.band_view.setText(songs.get(i).getBand());
+            holder.year_view.setText(songs.get(i).getYear());
         }
 
         @Override
