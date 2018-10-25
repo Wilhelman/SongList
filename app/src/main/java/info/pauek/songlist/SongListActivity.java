@@ -18,6 +18,8 @@ import java.util.List;
 
 public class SongListActivity extends AppCompatActivity {
 
+    public static final int EDIT_SONG = 0;
+
     private List<Song> songs;
     private RecyclerView song_list_view;
     private Adapter adapter;
@@ -48,8 +50,8 @@ public class SongListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.btn_new_song:
-                Toast.makeText(this, "Useless button! :D",
-                        Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, SongEditActivity.class);
+                startActivityForResult(intent, EDIT_SONG);
                 break;
         }
         return super.onOptionsItemSelected(item);
