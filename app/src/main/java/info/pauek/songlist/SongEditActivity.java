@@ -1,5 +1,6 @@
 package info.pauek.songlist;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -39,5 +40,17 @@ public class SongEditActivity extends AppCompatActivity {
         int tmp_year = Integer.parseInt(edit_year.getText().toString());
         tmp_year++;
         edit_year.setText(String.valueOf(tmp_year));
+    }
+
+    public void onClickSave(View view) {
+        String str_data = edit_title.getText().toString();
+        Intent data = new Intent();
+        data.putExtra("title", str_data);
+        str_data = edit_band.getText().toString();
+        data.putExtra("band", str_data);
+        str_data = edit_year.getText().toString();
+        data.putExtra("year", str_data);
+        setResult(RESULT_OK, data);
+        finish();
     }
 }
