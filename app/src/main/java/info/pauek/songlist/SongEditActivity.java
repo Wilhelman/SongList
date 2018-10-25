@@ -14,6 +14,7 @@ public class SongEditActivity extends AppCompatActivity {
     private TextView edit_title;
     private TextView edit_band;
     private TextView edit_year;
+    private int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +27,28 @@ public class SongEditActivity extends AppCompatActivity {
 
         // Init the year to the current one
         Calendar calendar = new GregorianCalendar();
-        int year = calendar.get(Calendar.YEAR);
-        edit_year.setText(String.valueOf(year));
+        int cal_year = calendar.get(Calendar.YEAR);
+        edit_year.setText(String.valueOf(cal_year));
+
+
+        Intent intent = getIntent();
+        if(intent != null){
+
+            String title = intent.getStringExtra("title");
+            String band = intent.getStringExtra("band");
+            String year = intent.getStringExtra("year");
+            //index = intent.getIntExtra("index",0);
+
+            if(title != null){
+                edit_title.setText(intent.getStringExtra("title"));
+            }
+            if(band != null){
+                edit_band.setText(intent.getStringExtra("band"));
+            }
+            if(year != null){
+                edit_year.setText(intent.getStringExtra("year"));
+            }
+        }
     }
 
     public void onClickMinus(View view) {

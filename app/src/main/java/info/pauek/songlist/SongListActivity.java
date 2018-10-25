@@ -39,6 +39,25 @@ public class SongListActivity extends AppCompatActivity {
         song_list_view.setAdapter(adapter);
     }
 
+    public void onSongClick(int position) {
+
+        Intent intent = new Intent(SongListActivity.this, SongEditActivity.class);
+
+        String str_data = songs.get(position).getTitle().toString();
+
+        intent.putExtra("title",str_data);
+        str_data = songs.get(position).getBand().toString();
+        intent.putExtra("band", str_data);
+        str_data = songs.get(position).getYear().toString();
+        intent.putExtra("year", str_data);
+       /*int index_data = position;
+        data.putExtra("index", index_data);*/
+        setResult(RESULT_OK, intent);
+
+        startActivityForResult(intent, EDIT_SONG);
+
+    }
+
     /*Menu stuff*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -67,7 +86,14 @@ public class SongListActivity extends AppCompatActivity {
             title_view = itemView.findViewById(R.id.title_view);
             band_view = itemView.findViewById(R.id.band_view);
             year_view = itemView.findViewById(R.id.year_view);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onSongClick(getAdapterPosition());
+                }
+            });
         }
+
     }
 
     class Adapter extends RecyclerView.Adapter<ViewHolder> {
@@ -89,6 +115,8 @@ public class SongListActivity extends AppCompatActivity {
         public int getItemCount() {
             return songs.size();
         }
+
+
     }
 
 
