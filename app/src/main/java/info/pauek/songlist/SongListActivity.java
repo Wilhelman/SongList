@@ -90,4 +90,23 @@ public class SongListActivity extends AppCompatActivity {
             return songs.size();
         }
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case EDIT_SONG:
+                if(resultCode == RESULT_OK){
+                    String title = data.getStringExtra("title");
+                    String band = data.getStringExtra("band");
+                    String year = data.getStringExtra("year");
+                    songs.add(new Song(title,band,year));
+                    adapter.notifyItemInserted(songs.size()-1);
+                }
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+                break;
+        }
+    }
 }
